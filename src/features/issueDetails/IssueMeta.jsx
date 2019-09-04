@@ -1,16 +1,8 @@
 import React from 'react'
 import classnames from 'classnames'
-
-import { Issue } from 'api/githubAPI'
 import { UserWithAvatar } from 'components/UserWithAvatar'
-
 import styles from './IssueMeta.module.css'
-
-interface IssueProps {
-  issue: Issue
-}
-
-const IssueState = ({ issue: { state } }: IssueProps) => (
+const IssueState = ({ issue: { state } }) => (
   <span
     className={classnames('issue-detail__state', styles.issueState, {
       [styles.open]: state === 'open'
@@ -19,14 +11,12 @@ const IssueState = ({ issue: { state } }: IssueProps) => (
     {state}
   </span>
 )
-
-const IssueNumber = ({ issue }: IssueProps) => (
+const IssueNumber = ({ issue }) => (
   <span className={classnames('issue-detail__number', styles.number)}>
     #{issue.number}
   </span>
 )
-
-export const IssueMeta = ({ issue }: IssueProps) => {
+export const IssueMeta = ({ issue }) => {
   return (
     <div className={classnames('issue-detail__meta', styles.meta)}>
       <IssueNumber issue={issue} />

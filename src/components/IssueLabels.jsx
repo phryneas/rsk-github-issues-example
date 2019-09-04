@@ -1,14 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-
-import { Label } from 'api/githubAPI'
-
-interface IssueLabelsProps {
-  labels: Label[]
-  className?: string
-}
-
-export const IssueLabels = ({ labels, className }: IssueLabelsProps) => (
+export const IssueLabels = ({ labels, className }) => (
   <div className={classnames('issue__labels', className)}>
     {labels.map(label => (
       <span

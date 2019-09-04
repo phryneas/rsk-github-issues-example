@@ -1,23 +1,9 @@
 import React from 'react'
 import classnames from 'classnames'
-import Paginate, { ReactPaginateProps } from 'react-paginate'
-
+import Paginate from 'react-paginate'
 import styles from './IssuePagination.module.css'
 import './IssuePagination.css'
-
-export type OnPageChangeCallback = ReactPaginateProps['onPageChange']
-
-interface Props {
-  currentPage: number
-  pageCount: number
-  onPageChange?: OnPageChangeCallback
-}
-
-export const IssuePagination = ({
-  currentPage,
-  pageCount,
-  onPageChange
-}: Props) => {
+export const IssuePagination = ({ currentPage, pageCount, onPageChange }) => {
   return (
     <div className={classnames('issuesPagination', styles.pagination)}>
       <Paginate

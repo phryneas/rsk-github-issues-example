@@ -1,15 +1,5 @@
 import React from 'react'
-
-interface OrgProps {
-  org: string
-  repo: string
-}
-
-type HeaderProps = {
-  openIssuesCount: number
-} & OrgProps
-
-function OrgRepo({ org, repo }: OrgProps) {
+function OrgRepo({ org, repo }) {
   return (
     <span>
       <a href={`https://github.com/${org}`} className="header__org">
@@ -22,12 +12,7 @@ function OrgRepo({ org, repo }: OrgProps) {
     </span>
   )
 }
-
-export function IssuesPageHeader({
-  openIssuesCount = -1,
-  org,
-  repo
-}: HeaderProps) {
+export function IssuesPageHeader({ openIssuesCount = -1, org, repo }) {
   if (openIssuesCount === -1) {
     return (
       <h1>

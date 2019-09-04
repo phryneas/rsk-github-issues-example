@@ -1,52 +1,28 @@
-import React, { useState, ChangeEvent } from 'react'
-
+import React, { useState } from 'react'
 import './pure-forms.css'
 import './pure-buttons.css'
-
-interface Props {
-  org: string
-  repo: string
-  setOrgAndRepo: (org: string, repo: string) => void
-  setJumpToPage: (page: number) => void
-}
-
-type InputEvent = ChangeEvent<HTMLInputElement>
-type ChangeHandler = (e: InputEvent) => void
-
-export const RepoSearchForm = ({
-  org,
-  repo,
-  setOrgAndRepo,
-  setJumpToPage
-}: Props) => {
+export const RepoSearchForm = ({ org, repo, setOrgAndRepo, setJumpToPage }) => {
   const [currentOrg, setCurrentOrg] = useState(org)
   const [currentRepo, setCurrentRepo] = useState(repo)
   const [currentPageText, setCurrentPageText] = useState('1')
-
-  const onOrgChanged: ChangeHandler = e => {
+  const onOrgChanged = e => {
     setCurrentOrg(e.target.value)
   }
-
-  const onRepoChanged: ChangeHandler = e => {
+  const onRepoChanged = e => {
     setCurrentRepo(e.target.value)
   }
-
-  const onCurrentPageChanged: ChangeHandler = e => {
+  const onCurrentPageChanged = e => {
     setCurrentPageText(e.target.value)
   }
-
   const onLoadRepoClicked = () => {
     setOrgAndRepo(currentOrg, currentRepo)
   }
-
   const onJumpToPageClicked = () => {
     const newPage = parseInt(currentPageText)
-
     if (newPage >= 1) {
       setJumpToPage(newPage)
     }
   }
-
   return (
     <form className="pure-form">
       <div>

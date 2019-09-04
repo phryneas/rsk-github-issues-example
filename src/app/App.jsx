@@ -1,54 +1,32 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-
-import { RootState } from './rootReducer'
-
 import { RepoSearchForm } from 'features/repoSearch/RepoSearchForm'
 import { IssuesListPage } from 'features/issuesList/IssuesListPage'
 import { IssueDetailsPage } from 'features/issueDetails/IssueDetailsPage'
-
 import {
   displayRepo,
   setCurrentDisplayType,
   setCurrentPage
 } from 'features/issuesDisplay/issuesDisplaySlice'
-
 import './App.css'
-
-type CurrentDisplay =
-  | {
-      type: 'issues'
-    }
-  | {
-      type: 'comments'
-      issueId: number
-    }
-
-const App: React.FC = () => {
+const App = () => {
   const dispatch = useDispatch()
-
   const { org, repo, displayType, page, issueId } = useSelector(
-    (state: RootState) => state.issuesDisplay
+    state => state.issuesDisplay
   )
-
-  const setOrgAndRepo = (org: string, repo: string) => {
+  const setOrgAndRepo = (org, repo) => {
     dispatch(displayRepo({ org, repo }))
   }
-
-  const setJumpToPage = (page: number) => {
+  const setJumpToPage = page => {
     dispatch(setCurrentPage(page))
   }
-
   const showIssuesList = () => {
     dispatch(setCurrentDisplayType({ displayType: 'issues' }))
   }
-
-  const showIssueComments = (issueId: number) => {
+  const showIssueComments = issueId => {
     dispatch(setCurrentDisplayType({ displayType: 'comments', issueId }))
   }
-
   let content
-
   if (displayType === 'issues') {
     content = (
       <React.Fragment>
@@ -79,8 +57,6 @@ const App: React.FC = () => {
       />
     )
   }
-
   return <div className="App">{content}</div>
 }
-
 export default App
